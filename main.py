@@ -1,5 +1,6 @@
 # This program will connect to the OpenWeather API, and provide weather information on location (currently only London)
 import requests
+import json
 
 # Creation of the Weather_Api class. This has the api_key that will be used to request information from the API
 class Weather_Api:
@@ -27,10 +28,30 @@ class Weather_Api:
             print(f"Error: {response.status_code}")
             return None
         
+    # This is the function that will get the weather information, for the lat and lon found in get_city
+    def get_weather(self, city_lat, city_lon):
+        params = {"lat": city_lat, "lon": city_lon, "appid": self.api_key}
+        response = requests.get(self.base_url, params=params)
+        if response.status_code == 200:
+            weather_data = response.json()
+            return weather_data
+        else:
+            print(f"Error: {response.status_code}")
+            return None
+        
 api_key = "INSERT API KEY HERE"
 weather_api = Weather_Api(api_key)
 city_name = input("Please input the name of a city: ")
-city_lat_lon = weather_api.get_city(city_name)
-if city_lat_lon:
-    print(f"Latitude: {city_lat_lon[0]}")
-    print(f"Longitude: {city_lat_lon[1]}")
+
+# This retrieves the latitude and longitude, and store in city_lat, city_lon
+city_lat, city_lon = weather_api.get_city(city_name)
+print(f"Latitude: {city_lat}")
+print(f"Longitude: {city_lon}")
+
+# This get the weather information using the lat and lon from get_city, then formats below
+city_weather = weather_api.get_weather(city_lat, city_lon)
+weather_main = city_weather["weather"][0]["main"]
+weather_description = city_weather["weather"][0]["description"]
+
+print(f"The weather in {city_name} is currently {weather_main} with a {weather_description}")
+
