@@ -38,8 +38,8 @@ class Weather_Api:
         else:
             sys.exit(f"Error: {response.status_code}")
 
-api_key = "c77ac5cf18e1d3c8ec9850d02f85483f"       
-#api_key = "INSERT API KEY HERE https://home.openweathermap.org/api_keys"
+    
+api_key = "INSERT API KEY HERE https://home.openweathermap.org/api_keys"
 weather_api = Weather_Api(api_key)
 city_name = input("Please input the name of a city: ")
 
