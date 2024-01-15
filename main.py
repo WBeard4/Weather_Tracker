@@ -1,6 +1,7 @@
 # This program will connect to the OpenWeather API, and provide weather information on location (currently only London)
 import requests
 import json
+import sys
 
 # Creation of the Weather_Api class. This has the api_key that will be used to request information from the API
 class Weather_Api:
@@ -22,12 +23,11 @@ class Weather_Api:
                 lon = city_data[0]["lon"]
                 return lat, lon
             else:
-                print("No info found on city")
-                return None
+                sys.exit("No info found on city")
+                
         else:
-            print(f"Error: {response.status_code}")
-            return None
-        
+            sys.exit(f"Error: {response.status_code}")
+      
     # This is the function that will get the weather information, for the lat and lon found in get_city
     def get_weather(self, city_lat, city_lon):
         params = {"lat": city_lat, "lon": city_lon, "appid": self.api_key}
@@ -36,8 +36,7 @@ class Weather_Api:
             weather_data = response.json()
             return weather_data
         else:
-            print(f"Error: {response.status_code}")
-            return None
+            sys.exit(f"Error: {response.status_code}")
         
 api_key = "INSERT API KEY HERE"
 weather_api = Weather_Api(api_key)
