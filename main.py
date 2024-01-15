@@ -1,4 +1,4 @@
-# This program will connect to the OpenWeather API, and provide weather information on location (currently only London)
+# This program will connect to the OpenWeather API, and provide weather information on location
 import requests
 import json
 import sys
