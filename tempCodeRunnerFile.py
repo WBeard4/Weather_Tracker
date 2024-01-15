@@ -1,2 +1,2 @@
 
-                  "appid": api_key}
+weather_main = city_weather["weather"][0]["main"]
