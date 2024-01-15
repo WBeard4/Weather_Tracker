@@ -27,7 +27,7 @@ class Weather_Api:
             print(f"Error: {response.status_code}")
             return None
         
-api_key = "fbf2d38c19b3d9150933342f768810f1"
+api_key = "INSERT API KEY HERE"
 weather_api = Weather_Api(api_key)
 city_name = input("Please input the name of a city: ")
 city_lat_lon = weather_api.get_city(city_name)
