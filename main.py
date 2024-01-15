@@ -67,8 +67,9 @@ def show_weather():
                 weather_main = city_weather["weather"][0]["main"]
                 #weather_description = city_weather["weather"][0]["description"]
                 weather_temp = city_weather["main"]["temp"]
+                output_text.insert(tk.END, f"Weather report for {city_name}\n")
                 output_text.insert(tk.END, f"Weather Condition: {weather_main}\n")
-                output_text.insert(tk.END, f"Temp: {round((weather_temp - 273.15), 0)} degrees celsius")
+                output_text.insert(tk.END, f"Temp: {round((weather_temp - 273.15), 0)} degrees celsius\n")
             else:
                 messagebox.showerror("Error", "Failed to fetch weather data.")
         else:
@@ -76,6 +77,6 @@ def show_weather():
     else:
         messagebox.showerror("Error", "Invalid city input.")
     root.mainloop()
-        #print(json.dumps(city_weather, indent=4))
+    #print(json.dumps(city_weather, indent=4))
         #print(f"The weather in {city_name} is currently {weather_main} with {weather_description}. It is currently {round((weather_temp - 273.15), 0)} degrees celsius")
 show_weather()
