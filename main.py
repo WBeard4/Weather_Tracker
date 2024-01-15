@@ -50,7 +50,7 @@ def show_weather():
     frame.pack(padx=10, pady=10)
     
     # Provide API key, then ask for an input city
-    api_key = "27a14c410e4a4e9e90dbfffbd3723c06"
+    api_key = "INSERT API KEY HERE https://home.openweathermap.org/api_keys"
     weather_api = Weather_Api(api_key)
     city_name = simpledialog.askstring("Input", "Please input the name of a city: ")
 
