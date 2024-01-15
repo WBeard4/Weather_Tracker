@@ -37,8 +37,9 @@ class Weather_Api:
             return weather_data
         else:
             sys.exit(f"Error: {response.status_code}")
-        
-api_key = "INSERT API KEY HERE"
+
+api_key = "c77ac5cf18e1d3c8ec9850d02f85483f"       
+#api_key = "INSERT API KEY HERE https://home.openweathermap.org/api_keys"
 weather_api = Weather_Api(api_key)
 city_name = input("Please input the name of a city: ")
 
@@ -51,6 +52,9 @@ print(f"Longitude: {city_lon}")
 city_weather = weather_api.get_weather(city_lat, city_lon)
 weather_main = city_weather["weather"][0]["main"]
 weather_description = city_weather["weather"][0]["description"]
+weather_temp = city_weather["main"]["temp"]
 
-print(f"The weather in {city_name} is currently {weather_main} with a {weather_description}")
+
+#print(json.dumps(city_weather, indent=4))
+print(f"The weather in {city_name} is currently {weather_main} with {weather_description}. It is currently {round((weather_temp - 273.15), 0)} degrees celsius")
 
